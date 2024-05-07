@@ -32,7 +32,7 @@ export function MyFormComponent(){
     });
     
     useEffect(() => {
-        fetch("C:\\Users\\a.capraro\\Desktop\\Progetto UI5\\sap-form\\src\\test\\form.json")
+        fetch("./test/form.json")
             .then((response) => response.json())
             .then(data => {
                 setFormData(data);
