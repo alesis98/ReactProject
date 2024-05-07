@@ -1,0 +1,6 @@
+/* styles.css */
+.active {
+  border-bottom: none; /* Rimuove il bordo inferiore solo per il menu attivo */
+  font-weight: bold;
+}
+  
