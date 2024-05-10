@@ -1,6 +1,6 @@
 {
-    "Nr": "444",
-    "Descrizione": "Valore Descrizione",
+    "Nr": 1,
+    "Descrizione": "",
     "Famiglia": "Valore Famiglia",
     "Dimensione": "Valore Dimensione",
     "Trattamento": "Valore Trattamento",
@@ -21,6 +21,5 @@
     "Qtà Venduta": "Valore Qtà Venduta",
     "Qtà Acquistata": "Valore Qtà Acquistata",
     "Qtà Venduta Prec": "Valore Qtà Venduta Prec",
-    "Qtà Acquistata Prec": "Valore Qtà Acquistata Prec",
-    "Articolo Amministrativo": true
+    "Qtà Acquistata Prec": "Valore Qtà Acquistata Prec"
 }

@@ -6,7 +6,7 @@ import React from 'react';
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import Fatturazione from "./pages/Fatturazione.tsx";
 import Rifornimenti from "./pages/Rifornimenti.tsx";
-import {createRoot} from 'react-dom/client';
+
 
 const router = createBrowserRouter ([
   {
@@ -23,10 +23,11 @@ const router = createBrowserRouter ([
   }
 ])
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.render(
   <React.StrictMode>
     
       <RouterProvider router={router}></RouterProvider>
     
-  </React.StrictMode>
+  </React.StrictMode>,
+  document.getElementById('root')
 );

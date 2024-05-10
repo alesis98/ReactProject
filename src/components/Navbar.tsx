@@ -13,7 +13,7 @@ function Navbar() {
   );
 }
 
-function MenuItem({ to, label, isActive }) {
+function MenuItem({ to, label, isActive }: { to: string, label: string, isActive: boolean }) {
   return (
     <li className={`border-solid border-2 p-2 ${isActive ? 'active' : ''}`}>
       <Link to={to}>{label}</Link>

@@ -1,10 +1,13 @@
-import {Form, Input, Button} from '@ui5/webcomponents-react';
+/* eslint-disable no-prototype-builtins */
+import {Form, Input, Button, CheckBox} from '@ui5/webcomponents-react';
 import {FormGroup, FormItem} from '@ui5/webcomponents-react';
 import { useState, useEffect } from 'react';
+import "@ui5/webcomponents/dist/features/InputElementsFormSupport.js"
+
 
 export function MyFormComponent(){
 
-    const [formData, setFormData] = useState({
+    const [formData1, setFormData1] = useState({
         Nr: '',
         Descrizione: '',
         Famiglia: '',
@@ -17,7 +20,12 @@ export function MyFormComponent(){
         "Codice Paese d'origine": '',
         'Quantità Conf. Scatole': '',
         'Tipologia Scatola': '',
-        Magazzino: '',
+      
+    });
+
+
+    const [formData2, setFormData2] = useState({
+         Magazzino: '',
         'Impiego su Modello': '',
         'Coefficiente di Impiego': '',
         "Qtà nell'Ordine Acquisto": '',
@@ -28,24 +36,56 @@ export function MyFormComponent(){
         'Qtà Acquistata': '',
         'Qtà Venduta Prec': '',
         'Qtà Acquistata Prec': '',
-        'Articolo Amministrativo': ''
-    });
+        
+    })
     
     useEffect(() => {
-        fetch("./test/form.json")
+        fetch("/form.json") 
             .then((response) => response.json())
-            .then(data => {
-                setFormData(data);
-                console.log(data);
+            .then((data) => {
+                // Confronta i campi dell'oggetto formData1 con quelli nel file JSON
+                const updatedFormData = { ...formData1 }; // Copia dell'oggetto formData1
+                Object.keys(updatedFormData).forEach(key => {
+                    // Se il campo è presente nel file JSON, aggiorna il valore
+                    if (data.hasOwnProperty(key)) {
+                        updatedFormData[key] = data[key];
+                    }
+                });
+                setFormData1(updatedFormData);
+                
             })
             .catch(error => {
-                console.error('Errore durante il caricamento dei dati:', error);
+                console.error('Error during data:', error);
             });
     }, []);
     
+
+
+
+    useEffect(() => {
+        fetch("/form.json") 
+            .then((response) => response.json())
+            .then((data) => {
+                // Confronta i campi dell'oggetto formData1 con quelli nel file JSON
+                const updatedFormData2 = { ...formData2 }; // Copia dell'oggetto formData1
+                Object.keys(updatedFormData2).forEach(key => {
+                    // Se il campo è presente nel file JSON, aggiorna il valore
+                    if (data.hasOwnProperty(key)) {
+                        updatedFormData2[key] = data[key];
+                    }
+                });
+                setFormData2(updatedFormData2);
+             
+            })
+            .catch(error => {
+                console.error('Error during data:', error);
+            });
+    }, []);
+
+
+
     return(
-
-
+        
         <>
         <div>
 
@@ -59,17 +99,35 @@ export function MyFormComponent(){
             labelSpanS={12}
             labelSpanXL={4}
             style={{
-                alignItems: 'center',
+            
             }}
             >
 
             <FormGroup>
-                {Object.entries(formData).map(([key, value]) => (
+                {Object.entries(formData1).map(([key, value]) => (
                     <FormItem label={key} key={key}>
                         <Input type='Text' value={value}/>
                     </FormItem>
                 ))}
             </FormGroup>
+
+
+            <FormGroup>
+                {Object.entries(formData2).map(([key, value]) => (
+                    <FormItem label={key} key={key}>
+                        <Input type='Text' value={value}/>
+                    </FormItem>
+                ))}
+                <FormItem label="Articolo Amministrativo">
+                    <CheckBox
+                        accessibleName=""
+                        onChange={function _a(){}}
+                        text="Non viene stampato su documenti cartacei"
+                        valueState="None"
+                    />
+                </FormItem>
+            </FormGroup>
+
 
             </Form>
             <div style={{ display: 'flex', justifyContent: 'flex-end', marginRight: '10vh' }}>
