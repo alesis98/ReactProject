@@ -87,7 +87,7 @@ export function MyFormComponent(){
     return(
         
         <>
-        <div>
+        <div style={{marginTop: "50px"}}>
 
             <Form
             columnsL={2}
